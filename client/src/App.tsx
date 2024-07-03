@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios';
 import './App.css'
-
+import DropFileInput from './components/DropFileInput'
 function App() {
   const [count, setCount] = useState("loading")
   useEffect(() => {
@@ -32,9 +32,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-      <button >
+        <DropFileInput></DropFileInput>
+      {/* <button >
           count is {count}
-        </button>
+        </button> */}
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
