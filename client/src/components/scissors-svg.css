@@ -1,0 +1,41 @@
+#left {
+    z-index: 100;
+    animation: left-rotate 1.5s linear infinite; 
+}
+
+
+@keyframes left-rotate {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+    50% {
+        transform: rotate(-15deg);
+        transform-origin: center;
+    }
+    100% {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+}
+#right {
+    z-index: 1;
+    animation: right-rotate 1.5s linear infinite; 
+}
+
+
+@keyframes right-rotate {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+    50% {
+        transform: rotate(15deg);
+        transform-origin: center;
+    }
+    100% {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+
+}

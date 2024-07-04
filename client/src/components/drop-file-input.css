@@ -1,15 +1,50 @@
+.scissors-border{
+    position: relative;
+}
+
+.spinning-scissors{
+    transform: rotate(90deg);
+    outline: 2px solid red;
+    font-size: 20px;
+    left:0%;  
+    top:0%;
+    margin-bottom: 20px;
+    position: absolute;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    animation: circle 20s infinite linear;
+}
+
+@keyframes circle {
+    0%   { left:-5%;  top:-8%; transform: rotate(90deg);}
+    25%  { left:94%; top:-8%;  transform: rotate(90deg);}
+    30%  { left:94%; top:0%; transform: rotate(180deg);}
+    50%  { left:94%; top:88%; transform: rotate(180deg);}
+    55%  { left:94%; top:88%; transform: rotate(270deg);}
+    75%  { left:-4%; top:88%; transform: rotate(270deg);}
+    80%  { left:-4%; top:88%; transform: rotate(360deg);}
+    95%  { left:-4%; top:-8%; transform: rotate(360deg);}
+    100% { left:-4%; top:-8%; transform: rotate(450deg);}
+  }
+
 .drop-file-input {
     position: relative;
     width: 400px;
     height: 200px;
     border-radius: 20px;
-    outline: 7px dashed turquoise;
+    border: 5px dashed rgb(0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background: url('https://content.wepik.com/media/bg-remover/remove-bg-bg0.png');
     background-color: var(--input-bg);
+    --start-x: 0px;
+    --end-x: 100%;
+    --start-y: 0px;
+    --end-y: 100%;
 }
+
 
 .drop-file-input input {
     opacity: 0; 
@@ -19,7 +54,7 @@
      width: 100%;
     height: 100%;
     cursor: pointer;
-    outline: 7px dashed red;
+
 
 }
 
@@ -27,70 +62,17 @@
 .drop-file-input.dragover {
     opacity: 0.6;
 }
-
+.working-image{
+    width: 100%;
+    height: 100%;
+}
 .drop-file-input__label {
     text-align: center;
-    color: var(--txt-second-color);
+    color:black;
     font-weight: 600;
     padding: 10px;
-    outline: 7px dashed red;
 }
 
 .drop-file-input__label img {
     width: 100px;
-}
-
-.drop-file-preview {
-    margin-top: 30px;
-    background-color: blueviolet;
-}
-
-.drop-file-preview p {
-    font-weight: 500;
-}
-
-.drop-file-preview__title {
-    margin-bottom: 20px;
-}
-
-.drop-file-preview__item {
-    position: relative;
-    display: flex;
-    margin-bottom: 10px;
-    background-color: var(--input-bg);
-    padding: 15px;
-    border-radius: 20px;
-}
-
-.drop-file-preview__item img {
-    width: 50px;
-    margin-right: 20px;
-}
-
-.drop-file-preview__item__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.drop-file-preview__item__del {
-    background-color: var(--box-bg);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.drop-file-preview__item:hover .drop-file-preview__item__del {
-    opacity: 1;
 }
