@@ -1,5 +1,4 @@
-// app.js
-
+import imageRouter from  './routers/image'
 import express from 'express';
 import cors from 'cors';
 
@@ -8,6 +7,8 @@ const port = 3000;
 
 app.use(cors());
 
+
+app.use('/api', imageRouter);
 app.get('/', (req, res) => {
 console.log(`request`);
   res.send('Hello, World! ss');

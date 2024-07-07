@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios';
 import './App.css'
-import DropFileInput from './components/DropFileInput'
+import DropFileInput from './components/DropFileInput/DropFileInput'
 function App() {
   const [count, setCount] = useState("loading")
   useEffect(() => {
