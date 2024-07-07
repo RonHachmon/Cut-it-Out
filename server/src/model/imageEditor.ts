@@ -1,10 +1,11 @@
 import { Rembg } from "@xixiyahaha/rembg-node";
 import sharp from "sharp";
-const CWD = process.cwd()
+import { promises as fs } from 'fs';
+
 
 
 // npx tsc -w
-const cutImage = async ( file_path:string) =>
+export const cutImage = async ( file_path:any) =>
     {
         const input = sharp(file_path);
 
@@ -22,8 +23,9 @@ const cutImage = async ( file_path:string) =>
         // await output.webp().toFile(`${file_path}.webp`);
         // await output.trim().webp().toFile("test-output-trimmed.webp");
     }
-console.log(process.cwd())
-///
-//cutImage('C:\\Users\\97254\\Desktop\\visual code\\new\\cut-it-out\\server\\test.jpg')
-cutImage(CWD+'/test.jpg')
 
+    // npx tsc -w
+export const deleteImage =   (imagePath:string) =>
+    {
+        fs.unlink(imagePath).then(()=>console.log("deleter file succesfully"))
+    }

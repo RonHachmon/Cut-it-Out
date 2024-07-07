@@ -13,17 +13,17 @@
     z-index: 10;
     width: 40px;
     height: 40px;
-    animation: circle 20s infinite linear;
+    animation: circle 15s infinite linear;
 }
 
 @keyframes circle {
     0%   { left:-5%;  top:-8%; transform: rotate(90deg);}
     25%  { left:94%; top:-8%;  transform: rotate(90deg);}
-    30%  { left:94%; top:0%; transform: rotate(180deg);}
+    27%  { left:94%; top:0%; transform: rotate(180deg);}
     50%  { left:94%; top:88%; transform: rotate(180deg);}
-    55%  { left:94%; top:88%; transform: rotate(270deg);}
+    52%  { left:94%; top:88%; transform: rotate(270deg);}
     75%  { left:-4%; top:88%; transform: rotate(270deg);}
-    80%  { left:-4%; top:88%; transform: rotate(360deg);}
+    77%  { left:-4%; top:88%; transform: rotate(360deg);}
     95%  { left:-4%; top:-8%; transform: rotate(360deg);}
     100% { left:-4%; top:-8%; transform: rotate(450deg);}
   }
@@ -65,6 +65,7 @@
 .working-image{
     width: 100%;
     height: 100%;
+    border-radius: 15px;
 }
 .drop-file-input__label {
     text-align: center;
@@ -75,4 +76,12 @@
 
 .drop-file-input__label img {
     width: 100px;
+}
+
+.action-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    border: 5px dashed rgb(0, 0, 0);
 }
