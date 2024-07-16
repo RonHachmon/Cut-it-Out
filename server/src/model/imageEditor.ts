@@ -1,4 +1,4 @@
-import { Rembg } from "@xixiyahaha/rembg-node";
+import {Rembg} from "."
 import sharp from "sharp";
 import { promises as fs } from 'fs';
 
@@ -7,6 +7,7 @@ import { promises as fs } from 'fs';
 // npx tsc -w
 export const cutImage = async ( file_path:any) =>
     {
+
         const input = sharp(file_path);
 
         // optional arguments

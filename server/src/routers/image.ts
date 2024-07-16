@@ -21,6 +21,7 @@ const upload = multer({
   });
 
 router.post('/data',upload.single('file'), async (req: Request, res: Response) => {
+  console.log(`MEOW`);
   console.log('Cut image request')
   if(req.file)
   {
