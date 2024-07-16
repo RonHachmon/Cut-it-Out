@@ -6,10 +6,10 @@ import ScissorsSVG from '../ScissorsSVG/ScissorsSVG'
 import Button from '../button/ImageButton';
 
 interface DropFileInputProps {
-    onFileChange: (files: File[]) => void;
+    onFileChange?: (files?: File[]) => void;
   }
 
-  const DropFileInput: React.FC<DropFileInputProps> = ({ onFileChange }) => {
+  const DropFileInput: React.FC<DropFileInputProps> = ({onFileChange}) => {
     const wrapperRef = useRef<HTMLDivElement >(null);
     const fileBlob = useRef<Blob|null>(null);
     const [originImage, setOriginImage] = useState<any>(null);
@@ -19,6 +19,10 @@ interface DropFileInputProps {
     const onDrop = () => wrapperRef.current?.classList.remove('dragover');
 
     const onFileDrop = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if(onFileChange)
+      {
+        onFileChange()
+      }
         const newFile = e.target.files ? e.target.files[0] : null;
 
         if (newFile) {
@@ -39,8 +43,8 @@ interface DropFileInputProps {
             formData.append('file', fileBlob.current);
         }
 
-        
-        const response = await axios.post('http://localhost:3000/api/data', formData, {
+        console.log("check")
+        const response = await axios.post('/api/data', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
@@ -95,7 +99,7 @@ interface DropFileInputProps {
                 </div>
             </div>
             <div className='action-button'>
-            <Button onClick={cutImage} disabled={false}>Cut</Button>
+            <Button onClick={cutImage} disabled={false}>hee</Button>
       <Button onClick={cleanImage} disabled={false}>Clean</Button>
       <Button onClick={downloadImage} disabled={false}>Download</Button>
 

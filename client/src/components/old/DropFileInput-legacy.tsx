@@ -4,11 +4,9 @@ import './drop-file-input.css';
 import uploadImg from '../assets/cloud-upload-regular-240.png';
 import PNGbackground from '../assets/PNGbackground.jpg'
 
-interface DropFileInputProps {
-    onFileChange: (files: File[]) => void;
-  }
 
-  const DropFileInputLegacy: React.FC<DropFileInputProps> = ({ onFileChange }) => {
+
+  const DropFileInputLegacy: React.FC = () => {
     const wrapperRef = useRef<HTMLDivElement >(null);
     const [originImage, setOriginImage] = useState<any>([]);
 

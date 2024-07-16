@@ -10,8 +10,8 @@ app.use(cors());
 
 app.use('/api', imageRouter);
 app.get('/', (req, res) => {
-console.log(`request`);
-  res.send('Hello, World! ss');
+console.log(`default??`);
+  res.send('check');
 });
 
 app.listen(port, () => {

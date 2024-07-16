@@ -1,4 +1,4 @@
-import { Rembg } from "@xixiyahaha/rembg-node";
+import { Rembg } from "./model/";
 import sharp from "sharp";
 const CWD = process.cwd()
 
