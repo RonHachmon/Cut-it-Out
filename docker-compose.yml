@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+  
+  nginx:
+    depends_on:
+      - api
+      - client
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"

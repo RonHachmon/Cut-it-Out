@@ -9,10 +9,20 @@ interface DropFileInputProps {
     onFileChange?: (files?: File[]) => void;
   }
 
+  enum imageState {
+    Clean,
+    Loading,
+    Uploaded,
+    Done,
+  }
+
   const DropFileInput: React.FC<DropFileInputProps> = ({onFileChange}) => {
     const wrapperRef = useRef<HTMLDivElement >(null);
     const fileBlob = useRef<Blob|null>(null);
-    const [originImage, setOriginImage] = useState<any>(null);
+    const [state, setState] = useState<imageState>(imageState.Clean);
+    const [originImage, setOriginImage] = useState<ArrayBuffer | null | string>(null);
+    const [editedImage, setEditedImage] = useState<ArrayBuffer | null | string>(null);
+
 
     const onDragEnter = () => wrapperRef.current?.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current?.classList.remove('dragover');
@@ -23,18 +33,17 @@ interface DropFileInputProps {
       {
         onFileChange()
       }
-        const newFile = e.target.files ? e.target.files[0] : null;
-
-        if (newFile) {
-        const reader = new FileReader()
-            fileBlob.current=newFile
-            reader.onloadend = () => {
-                setOriginImage(reader.result)
-            }
-        
-            reader.readAsDataURL(newFile)
-        }
-        
+      const newFile = e.target.files ? e.target.files[0] : null;
+      fileBlob.current = newFile
+      if (newFile) {
+      const reader = new FileReader()
+          reader.onloadend = () => {
+              setOriginImage(reader.result)
+              setState(imageState.Uploaded)
+          }
+      
+          reader.readAsDataURL(newFile)
+      }
     }
     const cutImage = async () => {
         const formData = new FormData();
@@ -44,6 +53,7 @@ interface DropFileInputProps {
         }
 
         console.log("check")
+        setState(imageState.Loading)
         const response = await axios.post('/api/data', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -52,14 +62,19 @@ interface DropFileInputProps {
         });
         fileBlob.current=response.data
         const imageUrl = URL.createObjectURL(response.data);
-        setOriginImage(imageUrl)
+        setEditedImage(imageUrl)
+        setState(imageState.Done)
       };
+
       const cleanImage =  () => {
         setOriginImage(null)
+        setEditedImage(null)
+        setState(imageState.Clean)
       };
+
       const downloadImage =  () => {
         if (fileBlob.current) {
-          const filename = `edited-image.png}`; // Extract extension
+          const filename = `edited-image.png`; // Extract extension
           const blobURL = URL.createObjectURL(fileBlob.current);
           const link = document.createElement('a');
           link.href = blobURL;
@@ -71,37 +86,67 @@ interface DropFileInputProps {
         }
       };
 
+    const renderContent = () => {
+      switch (state) {
+        case imageState.Clean:
+          return (
+              <div>
+                <div className="drop-file-input__label">
+                  <img src={uploadImg}  alt="" />
+                      <p>Drag & Drop your image here</p>
+                </div>
+
+                <input type="file" accept='.jpg,.jpeg,.png' value="" onChange={onFileDrop}/>
+              </div>
+              
+          );
+        case imageState.Uploaded:
+          return (
+            <img src={originImage} className='working-image' alt="preview"></img>
+          );
+        case imageState.Done:
+          return (
+            <img src={editedImage} className='working-image' alt="preview"></img>
+          );
+        case imageState.Loading:
+          {
+          console.log("Load")
+          return (
+            <div className="spinner"></div>
+          );
+        }
+        default:
+          return null;
+      }
+    };
+
+
+
+
     return (
         <div>
             <div className="scissors-border">
-                <div className='spinning-scissors'>
-                <ScissorsSVG/>
-                </div>
-                    <div
+
+                  <div
                         ref={wrapperRef}
                         className="drop-file-input"
                         onDragEnter={onDragEnter}
                         onDragLeave={onDragLeave}
                         onDrop={onDrop}                    
                     >
-                        {originImage ?
-                        (<img src={ originImage} className='working-image' alt="preview"></img>) : null}
-                        {originImage ? null:
-                        <div >
-                        <div className="drop-file-input__label">
-                        <img src={uploadImg}  alt="" />
-                            <p>Drag & Drop your image here</p>
-                        </div>
-                        <input type="file" accept='.jpg,.jpeg,.png' value="" onChange={onFileDrop}/>
-                        </div>
-                        }
+                <div className='spinning-scissors'>
+                <ScissorsSVG/>
+                </div>
+                      {renderContent()}
                     
                 </div>
             </div>
+
             <div className='action-button'>
-            <Button onClick={cutImage} disabled={false}>hee</Button>
-      <Button onClick={cleanImage} disabled={false}>Clean</Button>
-      <Button onClick={downloadImage} disabled={false}>Download</Button>
+
+            <Button onClick={cutImage} disabled={originImage === null}>Cut</Button>
+            <Button onClick={cleanImage} disabled={editedImage === null}>Clean</Button>
+            <Button onClick={downloadImage} disabled={editedImage === null}>Download</Button>
 
             </div>
         </div>

@@ -1,3 +1,9 @@
+#scissor-svg{
+    width: calc(var(--scissors-half-width) * 2);
+    height: calc(var(--scissors-half-width) * 2);  
+}
+
+
 #left {
     z-index: 100;
     animation: left-rotate 1.5s linear infinite; 

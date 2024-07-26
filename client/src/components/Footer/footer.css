@@ -1,0 +1,32 @@
+/* footer.css */
+.footer-wrapper {
+    background-color: #2d3748; 
+    /* border: 1px solid red;  */
+    height: fit-content;
+    margin-top: auto;
+  }
+  
+  .text-wrapper {
+    max-width: 80rem; /* max-w-7xl */
+    margin: 0 auto; /* mx-auto */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+    /* border: 1px solid green;  */
+  }
+  
+  .footer-text {
+    text-align: center; /* text-center */
+    color: #d1d5db; /* text-gray-300 */
+    /* border: 1px solid blue;  */
+  }
+  
+  .porfolio-link {
+    color: var(--main-color);
+    text-decoration: none;
+    /* border: 1px solid orange; */
+  }
+  
+  .porfolio-link:hover {
+    text-decoration: underline; /* hover:underline */
+  }
+  
