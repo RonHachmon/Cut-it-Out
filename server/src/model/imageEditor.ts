@@ -26,7 +26,11 @@ export const cutImage = async ( file_path:any) =>
     }
 
     // npx tsc -w
-export const deleteImage =   (imagePath:string) =>
-    {
-        fs.unlink(imagePath).then(()=>console.log("deleter file succesfully"))
-    }
+    export const deleteImage = async (imagePath: string) => {
+        try {
+            await fs.unlink(imagePath);
+            console.log("Deleted file successfully");
+        } catch (error) {
+            console.error("Error deleting file:", error);
+        }
+    };

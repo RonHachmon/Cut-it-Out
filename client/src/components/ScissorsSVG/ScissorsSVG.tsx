@@ -2,9 +2,9 @@ import { SVGProps } from "react"
 import './scissors-svg.css'
 const ScissorsSVG = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    height="40px"
-    width="40px"
-    id="Layer_1"
+    height="60px"
+    width="60px"
+    id="scissor-svg"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 511.998 511.998"

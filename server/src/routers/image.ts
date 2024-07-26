@@ -29,7 +29,17 @@ router.post('/data',upload.single('file'), async (req: Request, res: Response) =
     await cutImage(uploadedImage.path)
     let newFileName = uploadedImage.filename+'.png'
     const fullPath  = path.join(process.cwd(),'uploads',newFileName)    
-    res.sendFile(fullPath)
+    res.sendFile(fullPath, (err)=>{
+      if (err)
+      {
+        console.log("Error sending file")
+      }
+      else
+      {
+        deleteImage(fullPath)
+      }
+    })
+   
   }
   else
   {

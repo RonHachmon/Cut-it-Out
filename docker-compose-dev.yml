@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  client:
+    extends:
+      file: ./client/Docker-compose.dev.yaml
+      service: client
+
+  api:
+    extends:
+      file: ./server/Docker-compose.dev.yaml
+      service: server
+  nginx:
+    depends_on:
+      - api
+      - client
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"

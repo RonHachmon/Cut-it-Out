@@ -1,0 +1,14 @@
+.title-wrapper {
+    /* border: 2px solid yellowgreen; */
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    color: var(--second-color);
+
+}
+
+.title-text{
+    font-size: 3.2em;
+    line-height: 1.1;
+}
