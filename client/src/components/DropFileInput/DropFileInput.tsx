@@ -28,6 +28,7 @@ interface DropFileInputProps {
     const onDragLeave = () => wrapperRef.current?.classList.remove('dragover');
     const onDrop = () => wrapperRef.current?.classList.remove('dragover');
 
+
     const onFileDrop = (e: React.ChangeEvent<HTMLInputElement>) => {
       if(onFileChange)
       {
@@ -102,11 +103,11 @@ interface DropFileInputProps {
           );
         case imageState.Uploaded:
           return (
-            <img src={originImage} className='working-image' alt="preview"></img>
+            <img src={(originImage as string)} className='working-image' alt="preview"></img>
           );
         case imageState.Done:
           return (
-            <img src={editedImage} className='working-image' alt="preview"></img>
+            <img src={(editedImage as string)} className='working-image' alt="preview"></img>
           );
         case imageState.Loading:
           {
@@ -144,7 +145,7 @@ interface DropFileInputProps {
 
             <div className='action-button'>
 
-            <Button onClick={cutImage} disabled={originImage === null}>Cut</Button>
+            <Button onClick={cutImage} disabled={(originImage === null && editedImage === null ) }>Cut</Button>
             <Button onClick={cleanImage} disabled={editedImage === null}>Clean</Button>
             <Button onClick={downloadImage} disabled={editedImage === null}>Download</Button>
 
