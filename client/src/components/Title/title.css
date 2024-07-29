@@ -5,6 +5,7 @@
     justify-content: center;
     gap: 5px;
     color: var(--second-color);
+    margin-top: auto;
 
 }
 
@@ -12,3 +13,17 @@
     font-size: 3.2em;
     line-height: 1.1;
 }
+
+.title-text{
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+
+@media (min-width: 2000px) {
+    .title-text{
+        font-size: 6.2em;
+        line-height: 1.1;
+    }
+  }
+  
