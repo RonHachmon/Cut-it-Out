@@ -14,8 +14,9 @@ export const cutImage = async ( file_path:any) =>
         const rembg = new Rembg({
             logging: true,
         });
-    
+        console.log("API cutting image")
         const output = await rembg.remove(input);
+        console.log("API done ")
     
 
         await output.png().toFile(`${file_path}.png`)
