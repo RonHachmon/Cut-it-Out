@@ -7,7 +7,8 @@ import { promises as fs } from 'fs';
 // npx tsc -w
 export const cutImage = async ( file_path:any) =>
     {
-
+        try
+        {
         const input = sharp(file_path);
 
         // optional arguments
@@ -20,6 +21,12 @@ export const cutImage = async ( file_path:any) =>
     
 
         await output.png().toFile(`${file_path}.png`)
+    }
+    catch(err)
+    {
+        console.log("Error")
+        console.log(err)
+    }
     
         // optionally you can use .trim() too!
         // await output.webp().toFile(`${file_path}.webp`);
