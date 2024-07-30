@@ -1,17 +1,18 @@
-version: "3"
+version: '3'  # Replace with the desired version
+
 services:
   nginx:
     image: 'ronhachmon/cut-nginx'
     ports:
       - "80:80"
-    mem_limit : 512m
+    mem_limit: 512m
     hostname: nginx
   api:
     image: 'ronhachmon/cut-server'
     hostname: api
-    mem_limit : 512m
-    restart : on-failure
+    mem_limit: 2g
+    restart: on-failure
   client:
     image: 'ronhachmon/cut-client'
-    mem_limit : 512m
+    mem_limit: 512m
     hostname: client
