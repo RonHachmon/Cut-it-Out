@@ -16,8 +16,8 @@
 
 @media (max-width: 767px) {
     .drop-file-input {
-        --photo-width: 25rem; /* 400px */
-        --photo-height: 12.5rem; /* 200px */
+        --photo-width: 20rem; /* 400px */
+        --photo-height: 10rem; /* 200px */
         --scissors-half-width: 1.875rem; /* 30px */
     }
 }

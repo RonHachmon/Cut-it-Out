@@ -43,26 +43,14 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 15%;
-  height: 75%;
-  min-width: 200px;
-  max-width: 300px;
 }
 
 
-@media (min-width: 2000px) {
-  .drop-file-input {
-      --photo-width: 70rem; /* 1120px */
-      --photo-height: 35rem; /* 560px */
-      --scissors-half-width: 2.875rem; /* 46px */
-  }
-}
 
 
 @media (max-width: 767px) {
   button{
     font-size: 1rem;
-    min-width: 115px;
   }
 }
 

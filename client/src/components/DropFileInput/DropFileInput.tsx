@@ -29,23 +29,25 @@ interface DropFileInputProps {
     const onDrop = () => wrapperRef.current?.classList.remove('dragover');
 
 
-    const onFileDrop = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if(onFileChange)
-      {
-        onFileChange()
-      }
-      const newFile = e.target.files ? e.target.files[0] : null;
-      fileBlob.current = newFile
-      if (newFile) {
-      const reader = new FileReader()
-          reader.onloadend = () => {
-              setOriginImage(reader.result)
-              setState(imageState.Uploaded)
-          }
-      
-          reader.readAsDataURL(newFile)
-      }
-    }
+    const handleFileDrop = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const droppedFile = event.target.files?.[0] ?? null;
+        fileBlob.current = droppedFile;
+
+        if (droppedFile) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setOriginImage(reader.result as string);
+                setState(imageState.Uploaded);
+            };
+
+            reader.readAsDataURL(droppedFile);
+        }
+
+        if (onFileChange) {
+            onFileChange();
+        }
+    };
+
     const cutImage = async () => {
         const formData = new FormData();
         if (fileBlob.current)
@@ -97,7 +99,7 @@ interface DropFileInputProps {
                       <p>Drag & Drop your image here</p>
                 </div>
 
-                <input type="file" accept='.jpg,.jpeg,.png' value="" onChange={onFileDrop}/>
+                <input type="file" accept='.jpg,.jpeg,.png' value="" onChange={handleFileDrop}/>
               </div>
               
           );
