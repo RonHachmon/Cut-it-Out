@@ -9,7 +9,7 @@ const router = express.Router();
 // Configure Multer for file upload
 const upload = multer({
     dest: 'uploads/', // Set destination for uploaded files (optional)
-    limits: { fileSize: 100000000000000 }, // Set file size limit in bytes (optional)
+    limits: { fileSize: 2000000 }, // Set file size limit to 2 MB 
     // fileFilter: (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
     //     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     //     const extension = fs.extname(file.originalname).toLowerCase();

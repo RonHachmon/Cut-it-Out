@@ -8,7 +8,6 @@ const Title = () => {
     <div className='title-wrapper' >
         <h1 className='title-text'> 
           Cut it Out
-        
         </h1>
         <ScissorsSVG/>
     </div>
