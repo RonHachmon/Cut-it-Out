@@ -25,5 +25,5 @@ jobs:
           environment_name: Cut-it-out-env
           existing_bucket_name: elasticbeanstalk-eu-north-1-858189250353
           region: eu-north-1
-          version_label: ${{ github.sha }}
+          version_label: ${{ github.sha }}-$(date +%Y%m%d-%H%M%S)
           deployment_package: deploy.zip
