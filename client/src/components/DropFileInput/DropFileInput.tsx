@@ -4,6 +4,7 @@ import axios from 'axios';
 import uploadImg from '../../assets/cloud-upload-regular-240.png'
 import ScissorsSVG from '../ScissorsSVG/ScissorsSVG'
 import Button from '../button/ImageButton';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 interface DropFileInputProps {
     onFileChange?: (files?: File[]) => void;
@@ -22,7 +23,10 @@ interface DropFileInputProps {
     const [state, setState] = useState<imageState>(imageState.Clean);
     const [originImage, setOriginImage] = useState<ArrayBuffer | null | string>(null);
     const [editedImage, setEditedImage] = useState<ArrayBuffer | null | string>(null);
-
+    
+    const [Error, setError] = useState<string>("");
+    const KB =1024;
+    const MB = KB*KB;
 
     const onDragEnter = () => wrapperRef.current?.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current?.classList.remove('dragover');
@@ -30,19 +34,26 @@ interface DropFileInputProps {
 
 
     const handleFileDrop = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const droppedFile = event.target.files?.[0] ?? null;
-        fileBlob.current = droppedFile;
+        const droppedFile = event.target.files?.[0] ?? null
+        console.log(droppedFile?.size);
+        if(droppedFile && droppedFile?.size< MB*2)
+        {
+          setError("")
+          fileBlob.current = droppedFile;
+          //if file size less than 2MB load image
+          const reader = new FileReader();
+          reader.onloadend = () => {
+              setOriginImage(reader.result as string);
+              setState(imageState.Uploaded);
+          };
 
-        if (droppedFile) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setOriginImage(reader.result as string);
-                setState(imageState.Uploaded);
-            };
-
-            reader.readAsDataURL(droppedFile);
+          reader.readAsDataURL(droppedFile);
         }
-
+        else
+        {
+          setError("The image size should be less than 2MB")
+        }
+    
         if (onFileChange) {
             onFileChange();
         }
@@ -57,7 +68,9 @@ interface DropFileInputProps {
 
         console.log("check")
         setState(imageState.Loading)
-        const response = await axios.post('/api/data', formData, {
+        let serverHost=apiUrl;
+        console.log("host ",serverHost);
+        const response = await axios.post(serverHost+'/api/data', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
@@ -96,7 +109,7 @@ interface DropFileInputProps {
               <div>
                 <div className="drop-file-input__label">
                   <img src={uploadImg}  alt="" />
-                      <p>Drag & Drop your image here</p>
+                      <p className='instruction'>Drag & Drop your image here (2 MB or less)</p>
                 </div>
 
                 <input type="file" accept='.jpg,.jpeg,.png' value="" onChange={handleFileDrop}/>
@@ -141,10 +154,9 @@ interface DropFileInputProps {
                 <ScissorsSVG/>
                 </div>
                       {renderContent()}
-                    
                 </div>
             </div>
-
+            {Error && <div className='error-text'>{Error}</div>}
             <div className='action-button'>
 
             <Button onClick={cutImage} disabled={(originImage === null && editedImage === null ) }>Cut</Button>

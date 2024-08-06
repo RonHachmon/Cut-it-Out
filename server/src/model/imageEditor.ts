@@ -37,7 +37,7 @@ export const cutImage = async ( file_path:any) =>
     export const deleteImage = async (imagePath: string) => {
         try {
             await fs.unlink(imagePath);
-            console.log("Deleted file successfully");
+            console.log(`Deleted ${imagePath} file successfully`);
         } catch (error) {
             console.error("Error deleting file:", error);
         }

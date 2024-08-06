@@ -37,7 +37,6 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1.80rem;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -45,10 +44,14 @@ button {
   transition: border-color 0.25s;
 }
 
+@media (min-width: 1201px) {
+  button{
+    font-size: 1.8rem;
+  }
+}
 
 
-
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   button{
     font-size: 1rem;
   }
