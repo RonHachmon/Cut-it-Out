@@ -1,4 +1,4 @@
-## Cut it Out   <img src="./client/src/assets/scissors-svgrepo-com.svg" width="30" height="30" alt="Cut it Out - AI Background Removal"> [Visit Here](https://cutitoutapp.com/)
+## Cut it Out   <img src="./client/src/assets/scissors-svgrepo-com.svg" width="30" height="30" alt="Cut it Out - AI Background Removal">
 
 **Unleash the power of AI to effortlessly remove backgrounds from your images!** 🪄
 
@@ -18,7 +18,9 @@ Cut it Out is a web application that leverages the magic of AI to seamlessly sep
 
 ### Development and Deployment
 We've streamlined our development and deployment process using Docker for consistent environments and AWS Elastic Beanstalk for efficient scaling. GitHub Actions automates the deployment pipeline, ensuring rapid and reliable updates.
-
+<!---
+ [Visit Here](https://cutitoutapp.com/)
+--->
 ### Before and After
 
 <div style="display: flex; justify-content: center; gap:20px;">
