@@ -22,7 +22,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: cut-it-out
-          environment_name: Cut-it-out-env
+          environment_name: Cut-it-out-env-1
           existing_bucket_name: elasticbeanstalk-eu-north-1-858189250353
           region: eu-north-1
           version_label: ${{ github.sha }}-$(date +%Y%m%d-%H%M%S)
